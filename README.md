@@ -1,0 +1,92 @@
+# DIFFA hallucination baseline
+
+Measure untouched **DIFFA-2 audio captioning** on a fixed AudioCaps/ECHO sample before implementing Detect–Cut–Heal. The first experiment asks: **which source or event nouns in the generated description lack support in the available captions and sound labels?** Listen to the flagged examples before calling them hallucinations.
+
+## Run
+
+Use Linux, Python 3.10–3.12 and one CUDA GPU with bfloat16 support. A 48-GB GPU is a reasonable starting point; peak VRAM has not yet been measured. Expect multi-GB model downloads and a roughly 0.6-GB dataset download. Setup installs CUDA 12.4 wheels; the host needs a compatible NVIDIA driver. No training is performed.
+
+```bash
+git clone https://github.com/vbsh123/diffa-hallucination-baseline.git
+cd diffa-hallucination-baseline
+bash setup.sh
+
+# First check loading, generation and reporting on two clips:
+SAMPLES=2 bash run.sh
+
+# Then run the fixed 50-clip pilot:
+bash run.sh
+```
+
+`setup.sh` installs packages and fetches source. `run.sh` downloads the dataset and model weights as needed, materializes complete audio clips, generates captions, and scores them. Hugging Face's cache is reused. Raw captions are written after every clip, so a failed run can resume with the same command. The first model load can take a while. Dependencies are pinned; deterministic sampling and greedy decoding do not guarantee identical GPU numerics across machines.
+
+If reusing an environment, set `AUDIO_VENV=/absolute/path/to/.venv` for **both** scripts. Setup installs the pinned versions into that environment. `SKIP_INSTALL=1 bash setup.sh` skips installation if those versions are already present. `DIFFA_ROOT=/path/to/DIFFA` accepts an existing clean checkout at the pinned commit; other revisions or modified checkouts are rejected. A separate default checkout is created under `external/DIFFA`.
+
+Options for `run.sh`: `SAMPLES`, `SEED`, `DATA_DIR`, `RUN_NAME` (output directory), `DEVICE`, `AUDIO_VENV`, `DIFFA_ROOT`. Use new data/run directories when changing the seed or protocol. Do not mix runs. On an unchanged run, existing predictions are reused; changed code, dependencies, model settings or input manifest require a new output directory.
+
+## What is measured
+
+The dataset is [`kuanhuggingface/audiocaps_hallucination`](https://huggingface.co/datasets/kuanhuggingface/audiocaps_hallucination), the AudioCaps sound-caption split used for [ECHO](https://arxiv.org/abs/2406.08402). It contains 957 test clips, sound labels and five human reference captions per clip. We select 50 using a seeded shuffle, without selecting on model output or negative labels. Complete clips are converted to mono 16-kHz float WAVs. Unreadable clips and clips longer than the encoder's native 30-second window are excluded and logged; clips are never cropped. The manifest saves selected IDs, source row indices, audio hashes, captions and labels. Reference annotations are used **only after generation**, never in the model prompt.
+
+The prompt is `Describe the audio.` with the upstream chat template. Generation calls the **unchanged official factor-based parallel decoder**: 128 answer slots, 32-token blocks, 128 nominal steps, factor 1, temperature 0. The actual number of forward evaluations is saved per clip. Text ends at the first EOS; no forced caption length, attention modification, pruning, or correction is applied. We retain all answer IDs and flag missing EOS or unresolved masks.
+
+The first scorer is an **ECHO-style lexical noun proxy**, not a bit-for-bit reproduction of ECHO or a factual hallucination detector. spaCy extracts lemmatized nouns/proper nouns from the generated caption. The reference set is the union of nouns from *all* reference captions and labels. The generic meta-nouns `audio`, `clip`, `recording`, `sound`, `background`, and `foreground` are excluded on both sides. Sets are per clip; repeated words count once. There is no synonym matching or sound ontology normalization.
+
+Let `P` be predicted nouns, `R` reference nouns, `U = P − R`, and `S = P ∩ R`:
+
+| Output | Definition | Interpretation |
+| --- | --- | --- |
+| `unsupported_noun_fraction_micro` | sum of \|U\| / sum of \|P\| | Proportion of predicted noun types flagged across clips |
+| `unsupported_noun_fraction_macro` | mean of \|U\|/\|P\| over nonempty P | Average per-caption unsupported fraction |
+| `caption_flag_rate` | fraction of completed captions with nonempty U | Captions requiring a closer look |
+| `reference_noun_coverage_macro` | mean of \|S\|/\|R\| over nonempty R | Whether fewer flags merely reflect saying less |
+| `reference_noun_coverage_micro` | sum of \|S\| / sum of \|R\| | Coverage weighted by reference noun counts |
+
+Undefined ratios are JSON `null`, never negative sentinels or NaN. Empty noun sets are counted explicitly. A caption with no nouns is unflagged for the caption flag rate, so always read that rate alongside empty captions and coverage. Missing predictions are excluded from metric denominators and reported as incomplete; they are never counted as successes.
+
+**Limits:** an unmatched noun can be a valid synonym, an unannotated audible event, a negated mention, or an unsupported claim. Negation is flagged but not semantically resolved. Verbs such as “barking,” adjectives, event relationships, counts, and timing are not reliably assessed by this noun scorer. Single-word matching also loses compound meaning. Reference coverage measures annotation overlap, not complete acoustic coverage. AudioCaps is named in DIFFA's training recipe; this is a measurement pilot, not proof of unseen-data generalization.
+
+## Inspect results
+
+Each run creates:
+
+- `config.json`: dataset/cohort hash, source hashes, all model revisions, decoder settings, package versions, seed and GPU.
+- `predictions/<id>.json`: raw caption, token canvas, EOS/mask flags, actual forward count and elapsed time including audio feature preparation. Model loading is excluded from timing.
+- `model_load.json`: checkpoint-loading diagnostics.
+- `scores.json`: per-clip noun spans, support flags, references, aggregate scores and scorer provenance.
+- `review.csv`: audio paths, captions, reference annotations, flagged nouns, and **separate manual columns for scene/source claims and audible-event claims**.
+
+For the first 50 clips, listen to **every** clip and review the whole caption, including unflagged claims. Fill each manual column with `yes`, `no`, or `uncertain`; record the specific unsupported claim in `review_notes`. A scene/source error is an unsupported assertion about an object, entity or setting. An audible-event error is a claim that a sound occurred when it was not heard. An inferred source may be uncertain even when its sound description is reasonable. Keep these judgments separate; the automatic noun score does not distinguish them. Do not infer absence from missing reference words alone. Re-scoring preserves the three manual columns for matching clip IDs and captions; keep a separate backup of your listening judgments as well.
+
+Re-score saved captions on CPU without loading DIFFA:
+
+```bash
+source .venv/bin/activate
+python -m baseline.score --run runs/baseline50
+```
+
+If moving results between machines, also copy the cohort directory and supply `--manifest /new/path/manifest.json`; the manifest and audio hashes must still match.
+
+Individual steps:
+
+```bash
+python -m baseline.prepare --samples 50 --out data/audiocaps50
+python -m baseline.run --manifest data/audiocaps50/manifest.json --out runs/baseline50
+python -m unittest discover -s tests -v
+```
+
+CPU-only preparation/scoring needs `numpy`, `soundfile`, `scipy`, `datasets`, `spacy`, and `en_core_web_sm==3.8.0`; model inference additionally needs the full pinned environment. `tests/` uses synthetic audio and captions and never downloads model weights or the full dataset.
+
+Validation on 2026-10-27: all eight CPU tests passed; the real two-clip and 50-clip cohorts loaded and passed audio-hash checks (50 clips, zero exclusions, five references each). A tiny randomly initialized upstream LLaDA model exercised the official FPD API on CPU, including audio embedding insertion and answer extraction. **Full DIFFA checkpoint loading, GPU generation and quality measurements have not been run here**, because local GPU access is unavailable. No generated-corpus hallucination result is claimed.
+
+## Pinned upstreams
+
+- [DIFFA source](https://github.com/NKU-HLT/DIFFA): `0a87594e110984fbaf00ebf5bfe5840c212e4438`.
+- [DIFFA-2 weights](https://huggingface.co/zhoujiaming777/DIFFA-2): `8aea6122bafb25578cb49d142c6ac1f8e83e3dea`.
+- [LLaDA-8B-Instruct](https://huggingface.co/GSAI-ML/LLaDA-8B-Instruct): `08b83a6feb34df1a6011b80c3c00c7563e963b07`.
+- [Whisper large-v3](https://huggingface.co/openai/whisper-large-v3): `06f233fe06e710322aca913c1bc4249a0d71fce1`.
+- AudioCaps/ECHO dataset: `89ecbf42744b923421e14dff2ae484d015d88391`.
+
+The loader adapts the official code's hard-coded local checkpoint paths, restores the checkpoint's connector settings, loads the public Whisper encoder and pinned LLaDA base, and merges DIFFA's LoRA weights when present (alpha 16, as in the upstream training configuration). Required connector/LoRA mismatches abort loading. Upstream code is fetched, not vendored; its licenses and the models'/dataset's terms apply separately.
+
+After the audit confirms real failures, the next experiment can compare the same clips and prompt before/after Detect–Cut–Heal, reporting both unsupported claims and lost correct content. No intervention is implemented in this baseline.
