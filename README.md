@@ -24,6 +24,54 @@ If reusing an environment, set `AUDIO_VENV=/absolute/path/to/.venv` for **both**
 
 Options for `run.sh`: `SAMPLES`, `SEED`, `DATA_DIR`, `RUN_NAME` (output directory), `DEVICE`, `AUDIO_VENV`, `DIFFA_ROOT`. Use new data/run directories when changing the seed or protocol. Do not mix runs. On an unchanged run, existing predictions are reused; changed code, dependencies, model settings or input manifest require a new output directory.
 
+## Run on Vast.ai
+
+Use an existing suitable instance or start a PyTorch instance with Python 3.10–3.12 and CUDA 12.4 support. For a first attempt, budget one GPU with 48 GB VRAM, 64 GB system RAM and 100 GB disk. These are conservative starting allocations, not measured minimum requirements. The GPU must support bfloat16. Connect through the instance's SSH command or open a Jupyter terminal; see [Vast's CUDA setup guide](https://github.com/vast-ai/docs/blob/main/cuda.mdx).
+
+In the instance terminal (the standard root container):
+
+```bash
+apt-get update
+apt-get install -y git python3-venv libsndfile1 tmux
+mkdir -p /workspace
+cd /workspace
+git clone https://github.com/vbsh123/diffa-hallucination-baseline.git
+cd diffa-hallucination-baseline
+tmux new -s diffa-baseline
+```
+
+Inside the new tmux session, run:
+
+```bash
+set -euo pipefail
+cd /workspace/diffa-hallucination-baseline
+export HF_HOME=/workspace/hf-cache
+python3 --version  # Must be 3.10, 3.11 or 3.12.
+nvidia-smi
+bash setup.sh 2>&1 | tee setup.log
+
+.venv/bin/python - <<'PY'
+import torch
+assert torch.cuda.is_available(), 'CUDA is unavailable in this container'
+assert torch.cuda.is_bf16_supported(), 'Choose a GPU with bfloat16 support'
+print(torch.cuda.get_device_name(0))
+PY
+
+SAMPLES=2 bash run.sh 2>&1 | tee smoke2.log
+cat runs/baseline2/scores.json
+bash run.sh 2>&1 | tee baseline50.log
+```
+
+`set -o pipefail` stops the sequence if setup or the smoke run fails, even with `tee`. Inspect `runs/baseline2/predictions/` before treating any quality result as meaningful. Detach with **Ctrl-b, then d**; reconnect with `tmux attach -t diffa-baseline`. In a new tmux session, re-export `HF_HOME=/workspace/hf-cache` before resuming. Repeat `bash run.sh` to resume the 50-clip run, keeping code/settings unchanged. All model/dataset cache downloads use this `HF_HOME`; no Hugging Face token is normally needed for these public repositories.
+
+Results are in `runs/baseline50/scores.json`, `review.csv`, and `predictions/`. Download those plus `data/audiocaps50/` for listening and re-scoring. For example, create an archive and download it through Jupyter's file browser:
+
+```bash
+tar -czf /workspace/diffa-baseline50-results.tar.gz runs/baseline50 data/audiocaps50 baseline50.log
+```
+
+`tmux` survives terminal disconnects while the instance keeps running. A `/workspace` directory alone does not make files survive destruction of the instance; download your results or use a [Vast volume](https://github.com/vast-ai/docs/blob/main/guides/instances/storage/volumes.mdx) for longer-lived storage. Full DIFFA inference still needs its first GPU smoke test; the CPU validation below does not establish GPU compatibility or peak memory use.
+
 ## What is measured
 
 The dataset is [`kuanhuggingface/audiocaps_hallucination`](https://huggingface.co/datasets/kuanhuggingface/audiocaps_hallucination), the AudioCaps sound-caption split used for [ECHO](https://arxiv.org/abs/2406.08402). It contains 957 test clips, sound labels and five human reference captions per clip. We select 50 using a seeded shuffle, without selecting on model output or negative labels. Complete clips are converted to mono 16-kHz float WAVs. Unreadable clips and clips longer than the encoder's native 30-second window are excluded and logged; clips are never cropped. The manifest saves selected IDs, source row indices, audio hashes, captions and labels. Reference annotations are used **only after generation**, never in the model prompt.
