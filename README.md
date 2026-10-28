@@ -24,6 +24,21 @@ If reusing an environment, set `AUDIO_VENV=/absolute/path/to/.venv` for **both**
 
 Options for `run.sh`: `SAMPLES`, `SEED`, `DATA_DIR`, `RUN_NAME` (output directory), `DEVICE`, `AUDIO_VENV`, `DIFFA_ROOT`, `INSTRUCTION` (optional caption prompt). Use new data/run directories when changing the seed or protocol. Do not mix runs. On an unchanged run, existing predictions are reused; changed code, dependencies, model settings or input manifest require a new output directory.
 
+### Concise sound-description comparison
+
+An initial user-provided 50-clip Vast log with the default prompt includes long explanations of source categories, possible settings and atmosphere. Those words inflate the noun-overlap proxy. For example, a caption explaining which emergency vehicles commonly use sirens does not necessarily assert that all those vehicles are present, but the current scorer counts their nouns anyway. The same log also contains source-confusion candidates: a clip whose reference captions describe a typewriter is described as a sewing machine. These cases need listening; the overall unmatched-noun fraction cannot separate them.
+
+Re-scoring the quoted caption for `YZ_smJ66Tb3c` against the selected references matches `bird` and `man` but flags `atmosphere` and `environment`: a 0.5 unsupported fraction despite reference support for the two main sources. This is a lexical diagnostic of that quoted caption, not a verified acoustic hallucination judgment. Likewise, the scorer counts `speech` in the sewing-machine caption's negated phrase “contains no speech.” Do not interpret the reported 0.7196 overall unmatched-noun fraction as a verified hallucination rate.
+
+To request short descriptions of audible sources and events, without conditioning the answer on the scorer's choice of nouns:
+
+```bash
+INSTRUCTION="$(cat prompts/concise.txt)" \
+RUN_NAME=runs/concise50 bash run.sh
+```
+
+The prompt in `prompts/concise.txt` requests one or two short sentences, includes clearly audible background sounds, and discourages general explanations, hypothetical settings and duration estimates. It is an optional prompt baseline; the original default and saved predictions are preserved. The instruction is recorded in the new run's config. Prompting for concision and avoiding guesses can itself change error rates, so use a fixed prompt when subsequently comparing any intervention. Compare coverage and manually verified errors as well as the noun proxy: a lower score from saying less is not sufficient evidence of better grounding. The current scorer still does not validate verbs, temporal claims or whether a source noun is asserted versus mentioned as an example.
+
 ### Describing events in order
 
 To test whether chronological descriptions help inspection, run the same cohort with a separate instruction and output directory:
