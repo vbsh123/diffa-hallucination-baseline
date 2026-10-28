@@ -30,6 +30,8 @@ An initial user-provided 50-clip Vast log with the default prompt includes long 
 
 Re-scoring the quoted caption for `YZ_smJ66Tb3c` against the selected references matches `bird` and `man` but flags `atmosphere` and `environment`: a 0.5 unsupported fraction despite reference support for the two main sources. This is a lexical diagnostic of that quoted caption, not a verified acoustic hallucination judgment. Likewise, the scorer counts `speech` in the sewing-machine caption's negated phrase “contains no speech.” Do not interpret the reported 0.7196 overall unmatched-noun fraction as a verified hallucination rate.
 
+The [complete semantic reference audit of all 50 original captions](audits/baseline50_2026-10-28/REPORT.md) includes explicit judgments and evidence for every clip. It finds 23 captions with an unreferenced main sound/source claim, 21 with all reviewed main claims supported and 6 unclear-only; 12 captions are source-identity mismatch candidates. These are exploratory assistant judgments against the annotations, without waveform listening, not verified acoustic error rates. A replay from the pasted captions reproduces all four original noun metrics exactly. See the [per-clip CSV](audits/baseline50_2026-10-28/review.csv), judgment rules and reproducible count script in the same directory. The same outputs are re-evaluated; this does not demonstrate any model/intervention improvement.
+
 To request short descriptions of audible sources and events, without conditioning the answer on the scorer's choice of nouns:
 
 ```bash
@@ -98,7 +100,7 @@ Results are in `runs/baseline50/scores.json`, `review.csv`, and `predictions/`. 
 tar -czf /workspace/diffa-baseline50-results.tar.gz runs/baseline50 data/audiocaps50 baseline50.log
 ```
 
-`tmux` survives terminal disconnects while the instance keeps running. A `/workspace` directory alone does not make files survive destruction of the instance; download your results or use a [Vast volume](https://github.com/vast-ai/docs/blob/main/guides/instances/storage/volumes.mdx) for longer-lived storage. Full DIFFA inference still needs its first GPU smoke test; the CPU validation below does not establish GPU compatibility or peak memory use.
+`tmux` survives terminal disconnects while the instance keeps running. A `/workspace` directory alone does not make files survive destruction of the instance; download your results or use a [Vast volume](https://github.com/vast-ai/docs/blob/main/guides/instances/storage/volumes.mdx) for longer-lived storage. The user has supplied a completed 50-clip Vast run, audited above. Local CPU validation does not establish peak GPU memory use or compatibility with every instance.
 
 ## What is measured
 
@@ -153,7 +155,7 @@ python -m unittest discover -s tests -v
 
 CPU-only preparation/scoring needs `numpy`, `soundfile`, `scipy`, `datasets`, `spacy`, and `en_core_web_sm==3.8.0`; model inference additionally needs the full pinned environment. `tests/` uses synthetic audio and captions and never downloads model weights or the full dataset.
 
-Validation on 2026-10-27: all eight CPU tests passed; the real two-clip and 50-clip cohorts loaded and passed audio-hash checks (50 clips, zero exclusions, five references each). A tiny randomly initialized upstream LLaDA model exercised the official FPD API on CPU, including audio embedding insertion and answer extraction. **Full DIFFA checkpoint loading, GPU generation and quality measurements have not been run here**, because local GPU access is unavailable. No generated-corpus hallucination result is claimed.
+Validation on 2026-10-27: all eight CPU tests passed; the real two-clip and 50-clip cohorts loaded and passed audio-hash checks (50 clips, zero exclusions, five references each). A tiny randomly initialized upstream LLaDA model exercised the official FPD API on CPU, including audio embedding insertion and answer extraction. Full DIFFA checkpoint loading and GPU generation have not been run locally, because local GPU access is unavailable. The user subsequently supplied all 50 generated captions from Vast; their four reported noun metrics were reproduced exactly, and all captions received the semantic reference audit linked above. No waveform-verified hallucination rate is claimed.
 
 ## Pinned upstreams
 

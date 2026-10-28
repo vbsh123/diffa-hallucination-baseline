@@ -1,0 +1,426 @@
+{
+  "method": "assistant_semantic_reference_audit_v1",
+  "date": "2026-10-28",
+  "completed_on": "2026-10-29",
+  "rater": "Assistant; non-blind review of the user's posted captions against all five saved reference captions, sound labels and clip-duration metadata. No waveform listening.",
+  "dataset": "kuanhuggingface/audiocaps_hallucination",
+  "dataset_revision": "89ecbf42744b923421e14dff2ae484d015d88391",
+  "cohort_manifest_sha256": "7a6011ae66dde536d9843bbff5d0452da6ad8c62bd5701e6a9c1416deb1ab4f3",
+  "user_reported_original_metrics": {
+    "unsupported_noun_fraction_micro": 0.7195767195767195,
+    "unsupported_noun_fraction_macro": 0.6672791241266474,
+    "caption_flag_rate": 1,
+    "reference_noun_coverage_macro": 0.22611580086580085
+  },
+  "rules": [
+    "Review the main asserted sound-source/event claims in each caption; normalize ordinary paraphrases and deduplicate repetitions. A claim can bundle a source with its activity; this is not exhaustive atomic-proposition annotation.",
+    "Supported means at least one reference or label provides semantic support, allowing a coarser description of a source/event. It does not mean verified against the waveform.",
+    "Unreferenced means an asserted specific sound/source lacks support in the supplied annotations. It does not mean verified absent. Specific identity can be unsupported even if the general sound is supported.",
+    "Unclear means malformed text, insufficient action/material detail or conflicting annotations prevent a confident reference judgment.",
+    "Source-mismatch candidates identify a competing concrete source assignment for an event whose source the annotations describe differently. Candidate membership does not establish acoustic absence or exclusivity.",
+    "Exclude generic background-noise mentions, abstract nouns, moods and explanations of typical source behavior from the main sound-claim count. Record hypothetical sources/settings separately; do not treat lists of examples as assertions that every example is present.",
+    "Do not systematically score timing/order, pitch, intensity, counts or negation. Record salient reference contradictions and metadata errors separately. Preserve this limited scope when interpreting aggregate scores.",
+    "The headline statistic is caption-level annotation support, not claim precision or a CHAIR/ECHO reproduction. Informal claim grouping makes pooled claim percentages inappropriate.",
+    "Reference omissions are qualitative audit notes, not an exhaustive coverage metric. All-main-claims-supported does not mean complete, fluent, temporally correct or hallucination-free.",
+    "This is an exploratory audit performed after inspecting results and prompt weaknesses, not a blind or held-out evaluation. No audio judge or additional trained model is used."
+  ],
+  "clips": [
+    {
+      "n": 1, "id": "YwnqUgK_-fo4",
+      "supported": ["crowd cheering"],
+      "unreferenced": ["crowd clapping"], "unclear": [],
+      "source_mismatch_candidate": false,
+      "reference_evidence": "Captions describe cheering, whistles and popping/firecrackers, but do not mention applause.",
+      "annotation_conflict": "Labels list sheep/speech/animal, unlike the captions' firecrackers and crowd. Treat this clip's grounding as especially uncertain.",
+      "qualitative_omissions": ["popping/firecrackers", "whistling"],
+      "excluded_explanations": ["possible public event, sports game or celebration", "energetic mood"],
+      "other_issues": []
+    },
+    {
+      "n": 2, "id": "YAMQei29haCw",
+      "supported": ["power drill/mechanical operation", "man speaking"],
+      "unreferenced": [], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "References name a drill or power tool, motor buzzing, male vocalizing/speech and some clanking.",
+      "qualitative_omissions": [],
+      "excluded_explanations": ["whirring/clicking mechanism examples and explanatory repetition"],
+      "other_issues": ["Ungrammatical phrase: the are overlapping sounds."]
+    },
+    {
+      "n": 3, "id": "YZ_smJ66Tb3c",
+      "supported": ["man speaking", "birds calling/chirping"],
+      "unreferenced": [], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "All references describe male speech with birds; several identify pigeons/cooing.",
+      "qualitative_omissions": ["wing flaps", "hissing/whistling"],
+      "excluded_explanations": ["peaceful/natural atmosphere and inferred outdoor setting"], "other_issues": []
+    },
+    {
+      "n": 4, "id": "YCh0LMmhBUg4",
+      "supported": ["man speaking", "wind", "mechanical hum/noise", "child voice"],
+      "unreferenced": ["breathing"], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "References describe adult/child voices and wind; one mentions an aircraft and another a distant hum. None describes breathing.",
+      "qualitative_omissions": [], "excluded_explanations": ["natural/artificial atmosphere summary"], "other_issues": []
+    },
+    {
+      "n": 5, "id": "Y3n05BjV7r7M",
+      "supported": ["mechanical operation/noise"],
+      "unreferenced": [], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "References describe a small motor, rattling/clanking and a sliding door. The model's broad mechanical description is supported but vague.",
+      "qualitative_omissions": ["sliding-door identity", "distinct metal impacts"],
+      "excluded_explanations": ["possible gears/motors/moving parts"],
+      "other_issues": ["Repetitive and under-specific description."]
+    },
+    {
+      "n": 6, "id": "Y9U8COLzEegs",
+      "supported": ["man speaking"], "unreferenced": [],
+      "unclear": ["a be ringing"], "source_mismatch_candidate": false,
+      "reference_evidence": "References support male speech and electronic beeps, with water in several captions. The malformed phrase might refer to beeping but is not reliably interpretable.",
+      "qualitative_omissions": ["water flow"], "excluded_explanations": [],
+      "other_issues": ["Do not silently convert 'be ringing' into a verified bell or beep claim."]
+    },
+    {
+      "n": 7, "id": "Yy_OyLW9lBXU",
+      "supported": ["woman speaking", "baby crying", "people laughing"],
+      "unreferenced": [], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "References include crying infants, adult speech and a laughing woman.",
+      "qualitative_omissions": [], "excluded_explanations": ["possible family/social setting", "emotional atmosphere"], "other_issues": []
+    },
+    {
+      "n": 8, "id": "YhxbmDeNSO6Q",
+      "supported": ["motor/mechanical machine running", "man speaking"],
+      "unreferenced": ["wind"], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "References describe a sewing machine and speech with clicks/beeps. The broad motor sound is compatible; wind is unmentioned.",
+      "qualitative_omissions": ["sewing-machine identity", "clicks/beeps"],
+      "excluded_explanations": ["inferred outdoor/open setting"], "other_issues": []
+    },
+    {
+      "n": 9, "id": "YhDMHIDJdfDA",
+      "supported": ["snoring", "laughter/chuckling"],
+      "unreferenced": [], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "References include rhythmic snoring and, in two captions, chuckling/laughter.",
+      "qualitative_omissions": [], "excluded_explanations": ["playful tone"], "other_issues": []
+    },
+    {
+      "n": 10, "id": "YXplKBvZaHXA",
+      "supported": ["man speaking", "motorcycle engine revving"],
+      "unreferenced": [], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "All references describe speech with a motorcycle/motorbike engine accelerating or revving.",
+      "qualitative_omissions": [], "excluded_explanations": ["dynamic/energetic atmosphere"], "other_issues": []
+    },
+    {
+      "n": 11, "id": "Y4IeDBwyQ9ZQ",
+      "supported": ["woman speaking"], "unreferenced": ["glasses as the clinking source"],
+      "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "Clinking/clacking is supported, but the specific glass source is not: references instead mention a tin can, a plastic container or unspecified clinking. Labels mention dishes/pots/pans.",
+      "qualitative_omissions": [], "excluded_explanations": ["possible gathering or social event"],
+      "other_issues": ["Unsupported material/source specificity; the general clinking event is supported. This is not treated as a strong source-substitution example."]
+    },
+    {
+      "n": 12, "id": "YARFFw0e_jig",
+      "supported": ["burping"], "unreferenced": [], "unclear": ["man speaking"],
+      "source_mismatch_candidate": false,
+      "reference_evidence": "All captions describe burps/belches; one also describes screaming. Human vocalization is supported, but intelligible speech and speaker identity are not established.",
+      "qualitative_omissions": [], "excluded_explanations": [], "other_issues": []
+    },
+    {
+      "n": 13, "id": "Y2bq2lc3DLwM",
+      "supported": ["man speaking"], "unreferenced": [], "unclear": [],
+      "source_mismatch_candidate": false,
+      "reference_evidence": "References support speech and mostly describe a passing/accelerating vehicle. Generic background noise is not counted as a specific source claim.",
+      "qualitative_omissions": ["vehicle engine/passing vehicle"], "excluded_explanations": ["possible effect of background noise on speech clarity"],
+      "other_issues": ["Supported claims alone do not establish adequate coverage: the main non-speech event is omitted."]
+    },
+    {
+      "n": 14, "id": "YB4SZwi9Ce3o",
+      "supported": ["man speaking", "vehicle engine accelerating/revving"],
+      "unreferenced": [], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "References consistently describe speech and a vehicle accelerating/revving, with clicks in several captions.",
+      "qualitative_omissions": ["clicking"], "excluded_explanations": [], "other_issues": []
+    },
+    {
+      "n": 15, "id": "YV8A0VRGdgwM",
+      "supported": ["person speaking", "tapping/clicking impacts"],
+      "unreferenced": ["sheep as the bleating source", "hissing"], "unclear": [],
+      "source_mismatch_candidate": true,
+      "reference_evidence": "Bleating is supported, but the named animal in captions and labels is a goat; other captions use nonspecific baaing. Speech and tapping/gravel impacts have reference support; hissing does not.",
+      "qualitative_omissions": ["goat identity", "footsteps/gravel details"],
+      "excluded_explanations": ["possible tool striking a surface", "generic mechanical/environmental explanation"],
+      "other_issues": ["Species distinction is an annotation mismatch, not an acoustically verified goat-versus-sheep error."]
+    },
+    {
+      "n": 16, "id": "Yjid4t-FzUn0",
+      "supported": ["man speaking", "laughter/snicker"],
+      "unreferenced": [], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "References support speech and snickering/laughter; all also describe a goat bleating.",
+      "qualitative_omissions": ["goat bleat"], "excluded_explanations": [],
+      "other_issues": ["Repeated speech/laughter is deduplicated; claimed order is not evaluated."]
+    },
+    {
+      "n": 17, "id": "YkF1KWybdRpM",
+      "supported": ["vehicle engine running"], "unreferenced": [],
+      "unclear": ["idling followed by revving", "brief clickissing sound"],
+      "source_mismatch_candidate": false,
+      "reference_evidence": "References identify an aircraft engine taking off or passing/receding. An aircraft is a vehicle, so the model's generic vehicle source is not automatically wrong. Its precise engine-state sequence and coined sound are not established.",
+      "qualitative_omissions": ["aircraft identity"], "excluded_explanations": ["possible exhaust-system/component explanation"],
+      "other_issues": ["Garbled acoustic words and repetitive language. The broad engine claim and finer uncertain claims are reviewed separately, not treated as an atomic claim inventory."]
+    },
+    {
+      "n": 18, "id": "YtaYKM1OSTwE",
+      "supported": ["sheep/goat bleating"], "unreferenced": ["speaking voice", "vehicle opening"],
+      "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "References/labels support sheep or goats, rustling/wind and a person chuckling. They do not support spoken words or a vehicle-opening event.",
+      "qualitative_omissions": ["chuckling/giggling", "rustling/wind"],
+      "excluded_explanations": ["generic description of sheep vocalization"], "other_issues": []
+    },
+    {
+      "n": 19, "id": "YlfO471Rn61k",
+      "supported": [], "unreferenced": ["power tool operating"], "unclear": [],
+      "source_mismatch_candidate": true,
+      "reference_evidence": "Labels identify steam/hiss; references describe steam/hissing with hums/tones and, in one, machinery. They do not identify a power tool or drill.",
+      "qualitative_omissions": ["hissing/steam release"], "excluded_explanations": ["possible drill or similar machine"],
+      "other_issues": ["A generic mechanical background has some support; the specific power-tool assignment is the mismatch candidate. Repeated phrase: continuous and continuous."]
+    },
+    {
+      "n": 20, "id": "Y7P6lcyeDKNI",
+      "supported": ["man speaking"], "unreferenced": ["water flowing"], "unclear": [],
+      "source_mismatch_candidate": true,
+      "reference_evidence": "References describe bicycle/gears, dirt/gravel footsteps, rustling and speech. No water event is annotated.",
+      "qualitative_omissions": ["bicycle/gravel/gear sounds"], "excluded_explanations": ["calm/natural atmosphere"], "other_issues": []
+    },
+    {
+      "n": 21, "id": "YG3YO2unWz7k",
+      "supported": ["engine idling", "engine revving"],
+      "unreferenced": [], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "References describe idling/sputtering and revving, with motorcycle identity in one caption and the labels.",
+      "qualitative_omissions": [], "excluded_explanations": ["generic explanation of engine pitch"], "other_issues": []
+    },
+    {
+      "n": 22, "id": "YglAeihz0NAM",
+      "supported": ["water splashing", "people speaking"],
+      "unreferenced": [], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "References include ocean waves and a young man/girl or children speaking. The broad water and speech claims have support.",
+      "qualitative_omissions": ["wind", "children laughing"], "excluded_explanations": ["inferred wet/outdoor environment"], "other_issues": []
+    },
+    {
+      "n": 23, "id": "Ygbi6MxPf3hA",
+      "supported": ["birds chirping"], "unreferenced": ["train passing"], "unclear": [],
+      "source_mismatch_candidate": true,
+      "reference_evidence": "References/labels describe ocean waves, wind, birds and brief music. They provide no train source.",
+      "qualitative_omissions": ["ocean waves", "wind", "brief music"],
+      "excluded_explanations": ["peaceful/quiet outdoor atmosphere"], "other_issues": []
+    },
+    {
+      "n": 24, "id": "Yjlwe9jtu5Gw",
+      "supported": ["whistling"], "unreferenced": ["ticking", "scratching"], "unclear": [],
+      "source_mismatch_candidate": false,
+      "reference_evidence": "References support whistles and metal thumping/rattling. They do not explicitly support ticking or scratching; fine acoustic equivalence needs listening.",
+      "qualitative_omissions": ["metal thumping/rattling"], "excluded_explanations": [],
+      "other_issues": ["These may be descriptions of unannotated transients, so they are candidates, not established extra sounds."]
+    },
+    {
+      "n": 25, "id": "YBvw2gv1fcZw",
+      "supported": ["female/person speaking", "burping", "laughter"],
+      "unreferenced": [], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "References include girl/person speech, burps and laughter.",
+      "qualitative_omissions": [], "excluded_explanations": ["casual/humorous setting and tone"],
+      "other_issues": ["Repeated word: The the."]
+    },
+    {
+      "n": 26, "id": "YrvtA7c1I4xo",
+      "supported": ["man speaking"], "unreferenced": ["car engine revving", "ticking/ringing"],
+      "unclear": [], "source_mismatch_candidate": true,
+      "reference_evidence": "References describe a whoosh, speech, sneaker squeaks and in one caption basketball bounces/crowd sounds. They do not identify a car engine or ringing/ticking source.",
+      "qualitative_omissions": ["whoosh", "shoe squeaks/basketball sounds"], "excluded_explanations": [], "other_issues": []
+    },
+    {
+      "n": 27, "id": "YpWQeV08kYR0",
+      "supported": ["siren"], "unreferenced": [], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "All references support an emergency siren; vehicle/ambulance source annotations are also present.",
+      "qualitative_omissions": [],
+      "excluded_explanations": ["general list of vehicles that use sirens; this does not assert that each is present"],
+      "other_issues": ["Siren duration/continuity is not verified by clip length alone."]
+    },
+    {
+      "n": 28, "id": "Yd6gu2w19YQo",
+      "supported": ["laughing/giggling"], "unreferenced": ["sigh"], "unclear": [],
+      "source_mismatch_candidate": false,
+      "reference_evidence": "Every reference describes a baby/infant laughing. No sigh is mentioned.",
+      "qualitative_omissions": ["infant identity"], "excluded_explanations": ["release/relaxation explanation"], "other_issues": []
+    },
+    {
+      "n": 29, "id": "Y54eRRbCtPn8",
+      "supported": ["woman speaking"], "unreferenced": [], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "References consistently describe a woman speaking, often in a quiet environment.",
+      "qualitative_omissions": [], "excluded_explanations": ["nonspecific ambient/background-noise discussion"],
+      "other_issues": ["Quiet does not establish complete silence; generic background-noise language is not treated as an invented concrete source."]
+    },
+    {
+      "n": 30, "id": "Y-JP1GqPEKtw",
+      "supported": ["man speaking"], "unreferenced": ["vacuum cleaner operating"], "unclear": [],
+      "source_mismatch_candidate": true,
+      "reference_evidence": "References name a power tool, electric sanding machine or saw, with male speech, rather than a vacuum cleaner.",
+      "qualitative_omissions": ["power-tool identity"], "excluded_explanations": [], "other_issues": []
+    },
+    {
+      "n": 31, "id": "Y32565FEuksc",
+      "supported": ["woman speaking", "applause"], "unreferenced": [], "unclear": [],
+      "source_mismatch_candidate": false,
+      "reference_evidence": "All references support female speech and crowd applause.",
+      "qualitative_omissions": [], "excluded_explanations": ["lively/public setting inference"], "other_issues": []
+    },
+    {
+      "n": 32, "id": "YHZ9O6sc7cLA",
+      "supported": ["woman speaking", "dog barking"], "unreferenced": ["mechanical machinery sounds"],
+      "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "All references describe female speech and dog barking/growling, without a mechanical source.",
+      "qualitative_omissions": [], "excluded_explanations": ["human/mechanical/animal atmosphere summary"],
+      "other_issues": ["Truncated phrase: machinery or equipment is."]
+    },
+    {
+      "n": 33, "id": "Yt1hj7se76wQ",
+      "supported": [], "unreferenced": ["sewing machine operating"], "unclear": [],
+      "source_mismatch_candidate": true,
+      "reference_evidence": "Labels and references describe typing/typewriter, with a ding/bell and carriage-return noises, rather than a sewing machine.",
+      "qualitative_omissions": ["typewriter/typing", "bell/ding"],
+      "excluded_explanations": ["needle/thread mechanism explanation is part of the same unsupported sewing-machine attribution"],
+      "other_issues": ["The explicit assertion of no additional sounds conflicts with the reference bell/ding. The separate no-speech assertion cannot be verified from absence of speech annotations."]
+    },
+    {
+      "n": 34, "id": "YJfaj4P3us9M",
+      "supported": [], "unreferenced": ["door opening"], "unclear": [],
+      "source_mismatch_candidate": true,
+      "reference_evidence": "References/labels describe telephone dialing tones and a plastic switch, not a door.",
+      "qualitative_omissions": ["telephone dialing tones"],
+      "excluded_explanations": ["possible hinge/latch explanation"],
+      "other_issues": ["Caption says the recording lasts 4 seconds; the saved complete clip lasts 9.5018125 seconds."]
+    },
+    {
+      "n": 35, "id": "Yg5l3Bz6lWnc",
+      "supported": ["birds chirping"], "unreferenced": ["wind", "mechanical machinery sounds"],
+      "unclear": [], "source_mismatch_candidate": true,
+      "reference_evidence": "All references describe insect buzzing with birds and usually wood shuffling. Labels identify bees/wasps/insects. No machinery or wind source is annotated.",
+      "qualitative_omissions": ["insect buzzing"], "excluded_explanations": ["industrial/natural atmosphere"],
+      "other_issues": ["The possible insect-to-machinery substitution needs listening; wood/contact noises could also underlie the broad mechanical description."]
+    },
+    {
+      "n": 36, "id": "YqakN0JNbpcU",
+      "supported": ["man speaking", "wind"], "unreferenced": ["horse trotting"], "unclear": [],
+      "source_mismatch_candidate": true,
+      "reference_evidence": "References describe speech with insects buzzing and sometimes wind, birds or human footsteps. No horse is annotated.",
+      "qualitative_omissions": ["insect buzzing"], "excluded_explanations": [],
+      "other_issues": ["Garbled wind description: toots and whols."]
+    },
+    {
+      "n": 37, "id": "Y3wrdPAeqjVI",
+      "supported": ["man speaking", "contact/clicking/tapping sounds"],
+      "unreferenced": ["mechanisms/machinery operating"], "unclear": [],
+      "source_mismatch_candidate": false,
+      "reference_evidence": "References support male speech with clicks, wood clanks, rustling, footsteps and ringing. A specific operating-machine interpretation is unannotated.",
+      "qualitative_omissions": ["ringing", "footsteps"],
+      "excluded_explanations": ["industrial setting", "possible movement/interaction explanation"],
+      "other_issues": ["Broad contact sounds are supported, but their attribution to machinery is not established."]
+    },
+    {
+      "n": 38, "id": "YxUWSHYoslPQ",
+      "supported": ["man speaking", "glass/dishes clinking"], "unreferenced": [],
+      "unclear": ["specifically metal clinking", "door opening rather than other door activity"],
+      "source_mismatch_candidate": false,
+      "reference_evidence": "References mention a glass, dishes clanking and doors banging. Material specificity and direction of door movement are not established.",
+      "qualitative_omissions": ["high-frequency hum/ringing"], "excluded_explanations": [], "other_issues": []
+    },
+    {
+      "n": 39, "id": "YYIqpIjjee00",
+      "supported": ["water running", "toilet flushing"], "unreferenced": [], "unclear": [],
+      "source_mismatch_candidate": false,
+      "reference_evidence": "All references support toilet flushing and associated flowing/gurgling water.",
+      "qualitative_omissions": [], "excluded_explanations": ["generic mechanical characterization"], "other_issues": []
+    },
+    {
+      "n": 40, "id": "Yjf4iyQPJSvk",
+      "supported": ["water flowing/trickling"], "unreferenced": [], "unclear": [],
+      "source_mismatch_candidate": false,
+      "reference_evidence": "All references describe flowing/trickling/splashing water; one describes a stream of water.",
+      "qualitative_omissions": [], "excluded_explanations": ["possible stream/river/body-of-water origin", "peaceful atmosphere"],
+      "other_issues": ["No-voices/no-mechanical-sounds assertions remain unverified; reference omission does not prove absence. Repeated phrase: continuous and continuous."]
+    },
+    {
+      "n": 41, "id": "YelztUCeNQvQ",
+      "supported": ["train horn", "train passing/moving"], "unreferenced": [], "unclear": [],
+      "source_mismatch_candidate": false,
+      "reference_evidence": "References/labels consistently identify a train/subway horn and a moving train on rails.",
+      "qualitative_omissions": [], "excluded_explanations": ["likely wheel/engine mechanism details"],
+      "other_issues": ["Odd adjective: waring."]
+    },
+    {
+      "n": 42, "id": "YajheseWZmmU",
+      "supported": ["cat meowing"], "unreferenced": ["woman speaking", "mechanical sounds"],
+      "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "References support cat meows and, in several, male giggling/kissing noises/humming. They do not describe a woman speaking or machinery.",
+      "qualitative_omissions": ["human giggling/kissing/humming"],
+      "excluded_explanations": ["possible domestic setting"],
+      "other_issues": ["Vocalization type and speaker characterization both differ from the references; audio is needed to settle them."]
+    },
+    {
+      "n": 43, "id": "YJZloTOdIY_c",
+      "supported": [], "unreferenced": ["dog growling", "dog panting"], "unclear": [],
+      "source_mismatch_candidate": true,
+      "reference_evidence": "All references and labels identify horses, with neighing/snorting and hoofbeats/trotting, rather than a dog.",
+      "qualitative_omissions": ["horse identity", "hoofbeats/trotting"],
+      "excluded_explanations": ["possible aggression/warning/exertion explanation"], "other_issues": []
+    },
+    {
+      "n": 44, "id": "YPTyFYxXdut4",
+      "supported": ["woman speaking", "water splashing/trickling"],
+      "unreferenced": [], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "References consistently describe female speech with splashing/trickling water.",
+      "qualitative_omissions": [], "excluded_explanations": [], "other_issues": []
+    },
+    {
+      "n": 45, "id": "Y_iUX8CibElk",
+      "supported": [], "unreferenced": [], "unclear": ["small engine idling"],
+      "source_mismatch_candidate": false,
+      "reference_evidence": "One caption describes an industrial engine; others describe static, humming or rain, while the label is thunder. Engine-like sound has some support, but source and idling specificity cannot be settled.",
+      "annotation_conflict": "Thunder label versus divergent engine/static/hum/rain captions. Do not score the engine source as a definite error.",
+      "qualitative_omissions": [], "excluded_explanations": [], "other_issues": []
+    },
+    {
+      "n": 46, "id": "Y2KR0C5ysO8o",
+      "supported": ["vehicle engine idling", "vehicle engine revving"],
+      "unreferenced": [], "unclear": [], "source_mismatch_candidate": false,
+      "reference_evidence": "References/labels support idling/revving and acceleration; several also mention male speech.",
+      "qualitative_omissions": ["man speaking"], "excluded_explanations": ["generic pitch/RPM/power explanation"], "other_issues": []
+    },
+    {
+      "n": 47, "id": "YhuMLK0oA3L8",
+      "supported": ["man speaking", "whistling", "music"],
+      "unreferenced": ["mechanical mechanisms operating"], "unclear": [],
+      "source_mismatch_candidate": false,
+      "reference_evidence": "All references describe speech, whistling and guitar music, without a mechanical source.",
+      "qualitative_omissions": [], "excluded_explanations": [], "other_issues": []
+    },
+    {
+      "n": 48, "id": "Yii3Geza3hAU",
+      "supported": ["sewing machine operating"], "unreferenced": [], "unclear": ["man speaking"],
+      "source_mismatch_candidate": false,
+      "reference_evidence": "References consistently describe a sewing machine; one also describes a man yelling. Male vocalization is supported, but intelligible speech is not established.",
+      "qualitative_omissions": [], "excluded_explanations": [], "other_issues": []
+    },
+    {
+      "n": 49, "id": "Ym8wV38lf2jg",
+      "supported": ["siren", "man speaking"], "unreferenced": [], "unclear": [],
+      "source_mismatch_candidate": false,
+      "reference_evidence": "All references support emergency sirens and male/people speech; several also describe an engine.",
+      "qualitative_omissions": ["engine noise"],
+      "excluded_explanations": ["general list of emergency vehicle types", "tense/emergency-scene inference"],
+      "other_issues": ["Audibility/continuity of speech is not verified by references alone; nearby wording says not clearly audible but present and audible."]
+    },
+    {
+      "n": 50, "id": "YmYQrjcYNrW0",
+      "supported": [], "unreferenced": ["train as the horn source", "train passing"], "unclear": [],
+      "source_mismatch_candidate": true,
+      "reference_evidence": "Horn and passing-engine sounds are supported, but labels and specific captions identify a bus/road vehicle rather than a train. The unsupported part is train identity, not horn existence.",
+      "qualitative_omissions": ["bus/road-vehicle identity"],
+      "excluded_explanations": ["rail-wheel/engine mechanism details belong to the same train attribution; not separately counted"],
+      "other_issues": []
+    }
+  ]
+}

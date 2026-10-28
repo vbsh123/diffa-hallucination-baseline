@@ -1,0 +1,1959 @@
+{
+  "method": "replay_of_existing_lexical_noun_proxy_no_model_inference",
+  "note": "Same outputs, same scorer. Not a new generation or intervention result.",
+  "spacy": "3.8.4",
+  "nlp_model_version": "3.8.0",
+  "captions_sha256": "b554d2f9578293929bf339e960daa024f4040547b4fffb0ac2ea000ed790097d",
+  "summary": {
+    "expected_clips": 50,
+    "completed_clips": 50,
+    "complete": true,
+    "noun_bearing_captions": 50,
+    "empty_noun_captions": 0,
+    "empty_reference_noun_sets": 0,
+    "predicted_noun_count": 378,
+    "unsupported_noun_count": 272,
+    "reference_noun_count": 523,
+    "supported_noun_count": 106,
+    "unsupported_noun_fraction_micro": 0.7195767195767195,
+    "unsupported_noun_fraction_macro": 0.6672791241266474,
+    "caption_flag_rate": 1,
+    "reference_noun_coverage_micro": 0.20267686424474188,
+    "reference_noun_coverage_macro": 0.22611580086580085
+  },
+  "differences_from_user_report": {
+    "unsupported_noun_fraction_micro": 0.0,
+    "unsupported_noun_fraction_macro": 0.0,
+    "caption_flag_rate": 0,
+    "reference_noun_coverage_macro": 0.0
+  },
+  "all_reported_metrics_match": true,
+  "clips": [
+    {
+      "predicted_terms": [
+        "atmosphere",
+        "celebration",
+        "clapping",
+        "crowd",
+        "engagement",
+        "event",
+        "excitement",
+        "game",
+        "reaction",
+        "sport"
+      ],
+      "reference_terms": [
+        "animal",
+        "cheer",
+        "click",
+        "crowd",
+        "firecracker",
+        "people",
+        "pop",
+        "sheep",
+        "speech",
+        "whistle",
+        "yodeling"
+      ],
+      "supported_terms": [
+        "crowd"
+      ],
+      "unsupported_terms": [
+        "atmosphere",
+        "celebration",
+        "clapping",
+        "engagement",
+        "event",
+        "excitement",
+        "game",
+        "reaction",
+        "sport"
+      ],
+      "unsupported_fraction": 0.9,
+      "reference_coverage": 0.09090909090909091,
+      "id": "YwnqUgK_-fo4"
+    },
+    {
+      "predicted_terms": [
+        "clicking",
+        "drill",
+        "machinery",
+        "man",
+        "mechanism",
+        "noise",
+        "person",
+        "power",
+        "second",
+        "voice",
+        "whirring"
+      ],
+      "reference_terms": [
+        "briefly",
+        "drill",
+        "humming",
+        "man",
+        "motor",
+        "power",
+        "running",
+        "stopping",
+        "tool",
+        "vocalizing",
+        "wood"
+      ],
+      "supported_terms": [
+        "drill",
+        "man",
+        "power"
+      ],
+      "unsupported_terms": [
+        "clicking",
+        "machinery",
+        "mechanism",
+        "noise",
+        "person",
+        "second",
+        "voice",
+        "whirring"
+      ],
+      "unsupported_fraction": 0.7272727272727273,
+      "reference_coverage": 0.2727272727272727,
+      "id": "YAMQei29haCw"
+    },
+    {
+      "predicted_terms": [
+        "atmosphere",
+        "bird",
+        "environment",
+        "man"
+      ],
+      "reference_terms": [
+        "bird",
+        "call",
+        "coo",
+        "dove",
+        "hiss",
+        "man",
+        "person",
+        "pigeon",
+        "song",
+        "vocalization",
+        "wing"
+      ],
+      "supported_terms": [
+        "bird",
+        "man"
+      ],
+      "unsupported_terms": [
+        "atmosphere",
+        "environment"
+      ],
+      "unsupported_fraction": 0.5,
+      "reference_coverage": 0.18181818181818182,
+      "id": "YZ_smJ66Tb3c"
+    },
+    {
+      "predicted_terms": [
+        "atmosphere",
+        "breathing",
+        "child",
+        "element",
+        "man",
+        "mix",
+        "noise",
+        "voice",
+        "wind"
+      ],
+      "reference_terms": [
+        "aircraft",
+        "child",
+        "distance",
+        "hum",
+        "kid",
+        "man",
+        "microphone",
+        "noise",
+        "ship",
+        "speech",
+        "vehicle",
+        "wind",
+        "yell"
+      ],
+      "supported_terms": [
+        "child",
+        "man",
+        "noise",
+        "wind"
+      ],
+      "unsupported_terms": [
+        "atmosphere",
+        "breathing",
+        "element",
+        "mix",
+        "voice"
+      ],
+      "unsupported_fraction": 0.5555555555555556,
+      "reference_coverage": 0.3076923076923077,
+      "id": "YCh0LMmhBUg4"
+    },
+    {
+      "predicted_terms": [
+        "gear",
+        "kind",
+        "mechanism",
+        "motion",
+        "motor",
+        "noise",
+        "operation",
+        "part",
+        "system"
+      ],
+      "reference_terms": [
+        "clanging",
+        "clank",
+        "door",
+        "hum",
+        "humming",
+        "metal",
+        "motor",
+        "operate",
+        "series",
+        "slide"
+      ],
+      "supported_terms": [
+        "motor"
+      ],
+      "unsupported_terms": [
+        "gear",
+        "kind",
+        "mechanism",
+        "motion",
+        "noise",
+        "operation",
+        "part",
+        "system"
+      ],
+      "unsupported_fraction": 0.8888888888888888,
+      "reference_coverage": 0.1,
+      "id": "Y3n05BjV7r7M"
+    },
+    {
+      "predicted_terms": [
+        "man",
+        "pause"
+      ],
+      "reference_terms": [
+        "beep",
+        "beeping",
+        "horn",
+        "item",
+        "man",
+        "pour",
+        "series",
+        "speech",
+        "talk",
+        "trickle",
+        "water"
+      ],
+      "supported_terms": [
+        "man"
+      ],
+      "unsupported_terms": [
+        "pause"
+      ],
+      "unsupported_fraction": 0.5,
+      "reference_coverage": 0.09090909090909091,
+      "id": "Y9U8COLzEegs"
+    },
+    {
+      "predicted_terms": [
+        "atmosphere",
+        "baby",
+        "crying",
+        "family",
+        "people",
+        "setting",
+        "woman"
+      ],
+      "reference_terms": [
+        "baby",
+        "couple",
+        "cry",
+        "group",
+        "infant",
+        "lady",
+        "man",
+        "people",
+        "speech",
+        "talk",
+        "woman"
+      ],
+      "supported_terms": [
+        "baby",
+        "people",
+        "woman"
+      ],
+      "unsupported_terms": [
+        "atmosphere",
+        "crying",
+        "family",
+        "setting"
+      ],
+      "unsupported_fraction": 0.5714285714285714,
+      "reference_coverage": 0.2727272727272727,
+      "id": "Yy_OyLW9lBXU"
+    },
+    {
+      "predicted_terms": [
+        "environment",
+        "man",
+        "motor",
+        "noise",
+        "running",
+        "second",
+        "voice",
+        "wind"
+      ],
+      "reference_terms": [
+        "beep",
+        "click",
+        "clicking",
+        "machine",
+        "man",
+        "metal",
+        "sew",
+        "sewing",
+        "speech",
+        "talk",
+        "vibration"
+      ],
+      "supported_terms": [
+        "man"
+      ],
+      "unsupported_terms": [
+        "environment",
+        "motor",
+        "noise",
+        "running",
+        "second",
+        "voice",
+        "wind"
+      ],
+      "unsupported_fraction": 0.875,
+      "reference_coverage": 0.09090909090909091,
+      "id": "YhxbmDeNSO6Q"
+    },
+    {
+      "predicted_terms": [
+        "laugh",
+        "man",
+        "second",
+        "snoring"
+      ],
+      "reference_terms": [
+        "laughter",
+        "man",
+        "pattern",
+        "repeating",
+        "series",
+        "snore",
+        "snoring"
+      ],
+      "supported_terms": [
+        "man",
+        "snoring"
+      ],
+      "unsupported_terms": [
+        "laugh",
+        "second"
+      ],
+      "unsupported_fraction": 0.5,
+      "reference_coverage": 0.2857142857142857,
+      "id": "YhDMHIDJdfDA"
+    },
+    {
+      "predicted_terms": [
+        "atmosphere",
+        "engine",
+        "man",
+        "motorcycle",
+        "noise",
+        "voice"
+      ],
+      "reference_terms": [
+        "accelerate",
+        "engine",
+        "man",
+        "motorbike",
+        "motorcycle",
+        "revs",
+        "run",
+        "speech",
+        "vehicle"
+      ],
+      "supported_terms": [
+        "engine",
+        "man",
+        "motorcycle"
+      ],
+      "unsupported_terms": [
+        "atmosphere",
+        "noise",
+        "voice"
+      ],
+      "unsupported_fraction": 0.5,
+      "reference_coverage": 0.3333333333333333,
+      "id": "YXplKBvZaHXA"
+    },
+    {
+      "predicted_terms": [
+        "atmosphere",
+        "event",
+        "gathering",
+        "glass",
+        "woman"
+      ],
+      "reference_terms": [
+        "can",
+        "clacking",
+        "container",
+        "dish",
+        "girl",
+        "opening",
+        "pan",
+        "pot",
+        "rustling",
+        "speaking",
+        "tin",
+        "woman"
+      ],
+      "supported_terms": [
+        "woman"
+      ],
+      "unsupported_terms": [
+        "atmosphere",
+        "event",
+        "gathering",
+        "glass"
+      ],
+      "unsupported_fraction": 0.8,
+      "reference_coverage": 0.08333333333333333,
+      "id": "Y4IeDBwyQ9ZQ"
+    },
+    {
+      "predicted_terms": [
+        "burping",
+        "man",
+        "series"
+      ],
+      "reference_terms": [
+        "belch",
+        "burp",
+        "burping",
+        "eructation",
+        "series"
+      ],
+      "supported_terms": [
+        "burping",
+        "series"
+      ],
+      "unsupported_terms": [
+        "man"
+      ],
+      "unsupported_fraction": 0.3333333333333333,
+      "reference_coverage": 0.4,
+      "id": "YARFFw0e_jig"
+    },
+    {
+      "predicted_terms": [
+        "clarity",
+        "man",
+        "noise",
+        "second",
+        "speech",
+        "voice"
+      ],
+      "reference_terms": [
+        "accelerate",
+        "adult",
+        "approach",
+        "car",
+        "engine",
+        "male",
+        "man",
+        "motor",
+        "run",
+        "speech",
+        "talk",
+        "vehicle"
+      ],
+      "supported_terms": [
+        "man",
+        "speech"
+      ],
+      "unsupported_terms": [
+        "clarity",
+        "noise",
+        "second",
+        "voice"
+      ],
+      "unsupported_fraction": 0.6666666666666666,
+      "reference_coverage": 0.16666666666666666,
+      "id": "Y2bq2lc3DLwM"
+    },
+    {
+      "predicted_terms": [
+        "engine",
+        "man",
+        "noise",
+        "vehicle",
+        "voice"
+      ],
+      "reference_terms": [
+        "accelerate",
+        "car",
+        "clicking",
+        "engine",
+        "gear",
+        "man",
+        "speech",
+        "speed",
+        "stop",
+        "vehicle",
+        "vroom"
+      ],
+      "supported_terms": [
+        "engine",
+        "man",
+        "vehicle"
+      ],
+      "unsupported_terms": [
+        "noise",
+        "voice"
+      ],
+      "unsupported_fraction": 0.4,
+      "reference_coverage": 0.2727272727272727,
+      "id": "YB4SZwi9Ce3o"
+    },
+    {
+      "predicted_terms": [
+        "bleating",
+        "man",
+        "noise",
+        "person",
+        "sheep",
+        "surface",
+        "tool",
+        "vocalization"
+      ],
+      "reference_terms": [
+        "animal",
+        "bleat",
+        "bleating",
+        "click",
+        "dirt",
+        "farm",
+        "footstep",
+        "goat",
+        "gravel",
+        "livestock",
+        "moan",
+        "noise",
+        "pebble",
+        "person",
+        "rock",
+        "shuffle",
+        "surface",
+        "tickling"
+      ],
+      "supported_terms": [
+        "bleating",
+        "noise",
+        "person",
+        "surface"
+      ],
+      "unsupported_terms": [
+        "man",
+        "sheep",
+        "tool",
+        "vocalization"
+      ],
+      "unsupported_fraction": 0.5,
+      "reference_coverage": 0.2222222222222222,
+      "id": "YV8A0VRGdgwM"
+    },
+    {
+      "predicted_terms": [
+        "laughter",
+        "man",
+        "speech"
+      ],
+      "reference_terms": [
+        "bleat",
+        "bleating",
+        "goat",
+        "laughing",
+        "man",
+        "person",
+        "snicker",
+        "speech",
+        "time",
+        "tone"
+      ],
+      "supported_terms": [
+        "man",
+        "speech"
+      ],
+      "unsupported_terms": [
+        "laughter"
+      ],
+      "unsupported_fraction": 0.3333333333333333,
+      "reference_coverage": 0.2,
+      "id": "Yjid4t-FzUn0"
+    },
+    {
+      "predicted_terms": [
+        "component",
+        "engine",
+        "exhaust",
+        "hum",
+        "idling",
+        "intensity",
+        "pitch",
+        "rev",
+        "revving",
+        "rpm",
+        "state",
+        "system",
+        "transition",
+        "vehicle",
+        "whing"
+      ],
+      "reference_terms": [
+        "aircraft",
+        "airplane",
+        "distance",
+        "engine",
+        "flight",
+        "noise",
+        "vehicle",
+        "wind",
+        "wing"
+      ],
+      "supported_terms": [
+        "engine",
+        "vehicle"
+      ],
+      "unsupported_terms": [
+        "component",
+        "exhaust",
+        "hum",
+        "idling",
+        "intensity",
+        "pitch",
+        "rev",
+        "revving",
+        "rpm",
+        "state",
+        "system",
+        "transition",
+        "whing"
+      ],
+      "unsupported_fraction": 0.8666666666666667,
+      "reference_coverage": 0.2222222222222222,
+      "id": "YkF1KWybdRpM"
+    },
+    {
+      "predicted_terms": [
+        "bleating",
+        "opening",
+        "person",
+        "sheep",
+        "speaking",
+        "vehicle",
+        "vocalization",
+        "voice"
+      ],
+      "reference_terms": [
+        "animal",
+        "baby",
+        "blow",
+        "farm",
+        "goat",
+        "grass",
+        "gust",
+        "livestock",
+        "person",
+        "rustle",
+        "sheep",
+        "shuffle",
+        "wind"
+      ],
+      "supported_terms": [
+        "person",
+        "sheep"
+      ],
+      "unsupported_terms": [
+        "bleating",
+        "opening",
+        "speaking",
+        "vehicle",
+        "vocalization",
+        "voice"
+      ],
+      "unsupported_fraction": 0.75,
+      "reference_coverage": 0.15384615384615385,
+      "id": "YtaYKM1OSTwE"
+    },
+    {
+      "predicted_terms": [
+        "drill",
+        "machine",
+        "motor",
+        "noise",
+        "operation",
+        "power",
+        "tool",
+        "use",
+        "wh"
+      ],
+      "reference_terms": [
+        "beep",
+        "frequency",
+        "hiss",
+        "loud",
+        "machinery",
+        "noise",
+        "pitch",
+        "ringing",
+        "run",
+        "spray",
+        "steam",
+        "tone"
+      ],
+      "supported_terms": [
+        "noise"
+      ],
+      "unsupported_terms": [
+        "drill",
+        "machine",
+        "motor",
+        "operation",
+        "power",
+        "tool",
+        "use",
+        "wh"
+      ],
+      "unsupported_fraction": 0.8888888888888888,
+      "reference_coverage": 0.08333333333333333,
+      "id": "YlfO471Rn61k"
+    },
+    {
+      "predicted_terms": [
+        "atmosphere",
+        "element",
+        "man",
+        "scene",
+        "voice",
+        "water"
+      ],
+      "reference_terms": [
+        "bicycle",
+        "branch",
+        "dirt",
+        "gear",
+        "gravel",
+        "man",
+        "motorcycle",
+        "peddling",
+        "shuffling",
+        "speech",
+        "twig",
+        "vehicle"
+      ],
+      "supported_terms": [
+        "man"
+      ],
+      "unsupported_terms": [
+        "atmosphere",
+        "element",
+        "scene",
+        "voice",
+        "water"
+      ],
+      "unsupported_fraction": 0.8333333333333334,
+      "reference_coverage": 0.08333333333333333,
+      "id": "Y7P6lcyeDKNI"
+    },
+    {
+      "predicted_terms": [
+        "engine",
+        "hum",
+        "idling",
+        "increase",
+        "noise",
+        "pitch",
+        "revving",
+        "speed",
+        "vehicle"
+      ],
+      "reference_terms": [
+        "engine",
+        "humming",
+        "motorcycle",
+        "revving",
+        "sputtering",
+        "vehicle"
+      ],
+      "supported_terms": [
+        "engine",
+        "revving",
+        "vehicle"
+      ],
+      "unsupported_terms": [
+        "hum",
+        "idling",
+        "increase",
+        "noise",
+        "pitch",
+        "speed"
+      ],
+      "unsupported_fraction": 0.6666666666666666,
+      "reference_coverage": 0.5,
+      "id": "YG3YO2unWz7k"
+    },
+    {
+      "predicted_terms": [
+        "environment",
+        "man",
+        "second",
+        "splashing",
+        "water",
+        "woman"
+      ],
+      "reference_terms": [
+        "adult",
+        "blow",
+        "child",
+        "distance",
+        "girl",
+        "group",
+        "kid",
+        "man",
+        "microphone",
+        "ocean",
+        "people",
+        "speaking",
+        "speech",
+        "talk",
+        "wave",
+        "wind"
+      ],
+      "supported_terms": [
+        "man"
+      ],
+      "unsupported_terms": [
+        "environment",
+        "second",
+        "splashing",
+        "water",
+        "woman"
+      ],
+      "unsupported_fraction": 0.8333333333333334,
+      "reference_coverage": 0.0625,
+      "id": "YglAeihz0NAM"
+    },
+    {
+      "predicted_terms": [
+        "atmosphere",
+        "bird",
+        "environment",
+        "train"
+      ],
+      "reference_terms": [
+        "bird",
+        "blow",
+        "chime",
+        "gust",
+        "instrument",
+        "melody",
+        "microphone",
+        "music",
+        "noise",
+        "ocean",
+        "surf",
+        "tone",
+        "wave",
+        "wind"
+      ],
+      "supported_terms": [
+        "bird"
+      ],
+      "unsupported_terms": [
+        "atmosphere",
+        "environment",
+        "train"
+      ],
+      "unsupported_fraction": 0.75,
+      "reference_coverage": 0.07142857142857142,
+      "id": "Ygbi6MxPf3hA"
+    },
+    {
+      "predicted_terms": [
+        "noise",
+        "second",
+        "whistling"
+      ],
+      "reference_terms": [
+        "burst",
+        "couple",
+        "device",
+        "metal",
+        "occur",
+        "person",
+        "thumping",
+        "whistle",
+        "whistling",
+        "wolf"
+      ],
+      "supported_terms": [
+        "whistling"
+      ],
+      "unsupported_terms": [
+        "noise",
+        "second"
+      ],
+      "unsupported_fraction": 0.6666666666666666,
+      "reference_coverage": 0.1,
+      "id": "Yjlwe9jtu5Gw"
+    },
+    {
+      "predicted_terms": [
+        "burp",
+        "laughter",
+        "moment",
+        "tone",
+        "woman"
+      ],
+      "reference_terms": [
+        "burp",
+        "burping",
+        "clack",
+        "click",
+        "eructation",
+        "girl",
+        "laughing",
+        "laughter",
+        "person",
+        "plastic",
+        "speech"
+      ],
+      "supported_terms": [
+        "burp",
+        "laughter"
+      ],
+      "unsupported_terms": [
+        "moment",
+        "tone",
+        "woman"
+      ],
+      "unsupported_fraction": 0.6,
+      "reference_coverage": 0.18181818181818182,
+      "id": "YBvw2gv1fcZw"
+    },
+    {
+      "predicted_terms": [
+        "car",
+        "engine",
+        "man",
+        "second",
+        "time"
+      ],
+      "reference_terms": [
+        "basketball",
+        "bounce",
+        "crowd",
+        "distance",
+        "effect",
+        "foot",
+        "hardwood",
+        "man",
+        "people",
+        "shoe",
+        "sneaker",
+        "speaking",
+        "squeak",
+        "squeaking",
+        "surface",
+        "swish",
+        "swoosh",
+        "whoosh",
+        "whooshing",
+        "wind"
+      ],
+      "supported_terms": [
+        "man"
+      ],
+      "unsupported_terms": [
+        "car",
+        "engine",
+        "second",
+        "time"
+      ],
+      "unsupported_fraction": 0.8,
+      "reference_coverage": 0.05,
+      "id": "YrvtA7c1I4xo"
+    },
+    {
+      "predicted_terms": [
+        "ambulance",
+        "car",
+        "emergency",
+        "fire",
+        "police",
+        "second",
+        "siren",
+        "truck",
+        "vehicle",
+        "wailing"
+      ],
+      "reference_terms": [
+        "ambulance",
+        "distance",
+        "emergency",
+        "ring",
+        "siren",
+        "speed",
+        "truck",
+        "vehicle"
+      ],
+      "supported_terms": [
+        "ambulance",
+        "emergency",
+        "siren",
+        "truck",
+        "vehicle"
+      ],
+      "unsupported_terms": [
+        "car",
+        "fire",
+        "police",
+        "second",
+        "wailing"
+      ],
+      "unsupported_fraction": 0.5,
+      "reference_coverage": 0.625,
+      "id": "YpWQeV08kYR0"
+    },
+    {
+      "predicted_terms": [
+        "giggle",
+        "laughter",
+        "moment",
+        "relaxation",
+        "release",
+        "series",
+        "sigh"
+      ],
+      "reference_terms": [
+        "baby",
+        "infant",
+        "laughing",
+        "laughter"
+      ],
+      "supported_terms": [
+        "laughter"
+      ],
+      "unsupported_terms": [
+        "giggle",
+        "moment",
+        "relaxation",
+        "release",
+        "series",
+        "sigh"
+      ],
+      "unsupported_fraction": 0.8571428571428571,
+      "reference_coverage": 0.25,
+      "id": "Yd6gu2w19YQo"
+    },
+    {
+      "predicted_terms": [
+        "environment",
+        "form",
+        "noise",
+        "source",
+        "speech",
+        "woman"
+      ],
+      "reference_terms": [
+        "adult",
+        "environment",
+        "female",
+        "monologue",
+        "narration",
+        "speak",
+        "speech",
+        "woman"
+      ],
+      "supported_terms": [
+        "environment",
+        "speech",
+        "woman"
+      ],
+      "unsupported_terms": [
+        "form",
+        "noise",
+        "source"
+      ],
+      "unsupported_fraction": 0.5,
+      "reference_coverage": 0.375,
+      "id": "Y54eRRbCtPn8"
+    },
+    {
+      "predicted_terms": [
+        "cleaner",
+        "man",
+        "noise",
+        "vacuum",
+        "voice"
+      ],
+      "reference_terms": [
+        "buzzing",
+        "machine",
+        "man",
+        "motor",
+        "power",
+        "run",
+        "saw",
+        "speech",
+        "tool",
+        "voice",
+        "wood"
+      ],
+      "supported_terms": [
+        "man",
+        "voice"
+      ],
+      "unsupported_terms": [
+        "cleaner",
+        "noise",
+        "vacuum"
+      ],
+      "unsupported_fraction": 0.6,
+      "reference_coverage": 0.18181818181818182,
+      "id": "Y-JP1GqPEKtw"
+    },
+    {
+      "predicted_terms": [
+        "applause",
+        "environment",
+        "noise",
+        "speech",
+        "woman"
+      ],
+      "reference_terms": [
+        "applaud",
+        "applause",
+        "clap",
+        "crowd",
+        "monologue",
+        "narration",
+        "people",
+        "speech",
+        "woman"
+      ],
+      "supported_terms": [
+        "applause",
+        "speech",
+        "woman"
+      ],
+      "unsupported_terms": [
+        "environment",
+        "noise"
+      ],
+      "unsupported_fraction": 0.4,
+      "reference_coverage": 0.3333333333333333,
+      "id": "Y32565FEuksc"
+    },
+    {
+      "predicted_terms": [
+        "activity",
+        "animal",
+        "atmosphere",
+        "barking",
+        "dog",
+        "element",
+        "equipment",
+        "form",
+        "machinery",
+        "mix",
+        "noise",
+        "operation",
+        "presence",
+        "progress",
+        "scene",
+        "woman"
+      ],
+      "reference_terms": [
+        "bark",
+        "barking",
+        "bow",
+        "dog",
+        "growling",
+        "speaking",
+        "woman",
+        "wow"
+      ],
+      "supported_terms": [
+        "barking",
+        "dog",
+        "woman"
+      ],
+      "unsupported_terms": [
+        "activity",
+        "animal",
+        "atmosphere",
+        "element",
+        "equipment",
+        "form",
+        "machinery",
+        "mix",
+        "noise",
+        "operation",
+        "presence",
+        "progress",
+        "scene"
+      ],
+      "unsupported_fraction": 0.8125,
+      "reference_coverage": 0.375,
+      "id": "YHZ9O6sc7cLA"
+    },
+    {
+      "predicted_terms": [
+        "machine",
+        "motion",
+        "needle",
+        "operating",
+        "pace",
+        "quality",
+        "second",
+        "sewing",
+        "speech",
+        "thread"
+      ],
+      "reference_terms": [
+        "bell",
+        "carriage",
+        "clack",
+        "clacking",
+        "clicking",
+        "ding",
+        "loud",
+        "return",
+        "ring",
+        "time",
+        "typewriter"
+      ],
+      "supported_terms": [],
+      "unsupported_terms": [
+        "machine",
+        "motion",
+        "needle",
+        "operating",
+        "pace",
+        "quality",
+        "second",
+        "sewing",
+        "speech",
+        "thread"
+      ],
+      "unsupported_fraction": 1.0,
+      "reference_coverage": 0.0,
+      "id": "Yt1hj7se76wQ"
+    },
+    {
+      "predicted_terms": [
+        "door",
+        "hinge",
+        "latch",
+        "mechanism",
+        "movement",
+        "second"
+      ],
+      "reference_terms": [
+        "clicking",
+        "dial",
+        "dialing",
+        "dtmf",
+        "flipping",
+        "phone",
+        "playing",
+        "switch",
+        "telephone",
+        "tone"
+      ],
+      "supported_terms": [],
+      "unsupported_terms": [
+        "door",
+        "hinge",
+        "latch",
+        "mechanism",
+        "movement",
+        "second"
+      ],
+      "unsupported_fraction": 1.0,
+      "reference_coverage": 0.0,
+      "id": "YJfaj4P3us9M"
+    },
+    {
+      "predicted_terms": [
+        "activity",
+        "ambiance",
+        "atmosphere",
+        "bird",
+        "blend",
+        "effect",
+        "element",
+        "environment",
+        "form",
+        "machinery",
+        "mix",
+        "wind"
+      ],
+      "reference_terms": [
+        "bee",
+        "bird",
+        "chirp",
+        "distance",
+        "insect",
+        "shuffle",
+        "wasp",
+        "wood"
+      ],
+      "supported_terms": [
+        "bird"
+      ],
+      "unsupported_terms": [
+        "activity",
+        "ambiance",
+        "atmosphere",
+        "blend",
+        "effect",
+        "element",
+        "environment",
+        "form",
+        "machinery",
+        "mix",
+        "wind"
+      ],
+      "unsupported_fraction": 0.9166666666666666,
+      "reference_coverage": 0.125,
+      "id": "Yg5l3Bz6lWnc"
+    },
+    {
+      "predicted_terms": [
+        "horse",
+        "man",
+        "presence",
+        "trotting",
+        "whol",
+        "wind"
+      ],
+      "reference_terms": [
+        "bee",
+        "bird",
+        "dirt",
+        "fly",
+        "footstep",
+        "insect",
+        "man",
+        "microphone",
+        "speech",
+        "swarm",
+        "wasp",
+        "wind"
+      ],
+      "supported_terms": [
+        "man",
+        "wind"
+      ],
+      "unsupported_terms": [
+        "horse",
+        "presence",
+        "trotting",
+        "whol"
+      ],
+      "unsupported_fraction": 0.6666666666666666,
+      "reference_coverage": 0.16666666666666666,
+      "id": "YqakN0JNbpcU"
+    },
+    {
+      "predicted_terms": [
+        "activity",
+        "atmosphere",
+        "contact",
+        "form",
+        "interaction",
+        "knocking",
+        "machinery",
+        "man",
+        "mechanism",
+        "movement",
+        "nature",
+        "noise",
+        "operation"
+      ],
+      "reference_terms": [
+        "camera",
+        "clicking",
+        "footstep",
+        "man",
+        "muffling",
+        "noise",
+        "ringing",
+        "speech",
+        "wood"
+      ],
+      "supported_terms": [
+        "man",
+        "noise"
+      ],
+      "unsupported_terms": [
+        "activity",
+        "atmosphere",
+        "contact",
+        "form",
+        "interaction",
+        "knocking",
+        "machinery",
+        "mechanism",
+        "movement",
+        "nature",
+        "operation"
+      ],
+      "unsupported_fraction": 0.8461538461538461,
+      "reference_coverage": 0.2222222222222222,
+      "id": "Y3wrdPAeqjVI"
+    },
+    {
+      "predicted_terms": [
+        "clinking",
+        "door",
+        "glass",
+        "man",
+        "metal",
+        "noise",
+        "opening"
+      ],
+      "reference_terms": [
+        "banging",
+        "clanking",
+        "dish",
+        "door",
+        "frequency",
+        "glass",
+        "hum",
+        "man",
+        "noise",
+        "pan",
+        "pot",
+        "speech",
+        "surface"
+      ],
+      "supported_terms": [
+        "door",
+        "glass",
+        "man",
+        "noise"
+      ],
+      "unsupported_terms": [
+        "clinking",
+        "metal",
+        "opening"
+      ],
+      "unsupported_fraction": 0.42857142857142855,
+      "reference_coverage": 0.3076923076923077,
+      "id": "YxUWSHYoslPQ"
+    },
+    {
+      "predicted_terms": [
+        "flow",
+        "flush",
+        "running",
+        "toilet",
+        "water"
+      ],
+      "reference_terms": [
+        "flush",
+        "gurgling",
+        "occur",
+        "toilet",
+        "water"
+      ],
+      "supported_terms": [
+        "flush",
+        "toilet",
+        "water"
+      ],
+      "unsupported_terms": [
+        "flow",
+        "running"
+      ],
+      "unsupported_fraction": 0.4,
+      "reference_coverage": 0.6,
+      "id": "YYIqpIjjee00"
+    },
+    {
+      "predicted_terms": [
+        "atmosphere",
+        "body",
+        "river",
+        "stream",
+        "voice",
+        "water"
+      ],
+      "reference_terms": [
+        "splashing",
+        "stream",
+        "surface",
+        "trickle",
+        "water",
+        "waterfall",
+        "wind"
+      ],
+      "supported_terms": [
+        "stream",
+        "water"
+      ],
+      "unsupported_terms": [
+        "atmosphere",
+        "body",
+        "river",
+        "voice"
+      ],
+      "unsupported_fraction": 0.6666666666666666,
+      "reference_coverage": 0.2857142857142857,
+      "id": "Yjf4iyQPJSvk"
+    },
+    {
+      "predicted_terms": [
+        "clatter",
+        "engine",
+        "horn",
+        "noise",
+        "presence",
+        "second",
+        "sequence",
+        "track",
+        "train",
+        "wheel"
+      ],
+      "reference_terms": [
+        "blow",
+        "car",
+        "honking",
+        "horn",
+        "metro",
+        "rail",
+        "railroad",
+        "run",
+        "subway",
+        "track",
+        "train",
+        "transport",
+        "wagon"
+      ],
+      "supported_terms": [
+        "horn",
+        "track",
+        "train"
+      ],
+      "unsupported_terms": [
+        "clatter",
+        "engine",
+        "noise",
+        "presence",
+        "second",
+        "sequence",
+        "wheel"
+      ],
+      "unsupported_fraction": 0.7,
+      "reference_coverage": 0.23076923076923078,
+      "id": "YelztUCeNQvQ"
+    },
+    {
+      "predicted_terms": [
+        "atmosphere",
+        "cat",
+        "noise",
+        "woman"
+      ],
+      "reference_terms": [
+        "animal",
+        "cat",
+        "giggle",
+        "guy",
+        "hum",
+        "kissing",
+        "man",
+        "noise",
+        "person",
+        "static",
+        "time"
+      ],
+      "supported_terms": [
+        "cat",
+        "noise"
+      ],
+      "unsupported_terms": [
+        "atmosphere",
+        "woman"
+      ],
+      "unsupported_fraction": 0.5,
+      "reference_coverage": 0.18181818181818182,
+      "id": "YajheseWZmmU"
+    },
+    {
+      "predicted_terms": [
+        "aggression",
+        "dog",
+        "environment",
+        "growling",
+        "noise",
+        "panting",
+        "vocalization",
+        "warning"
+      ],
+      "reference_terms": [
+        "animal",
+        "clop",
+        "dirt",
+        "grass",
+        "ground",
+        "growl",
+        "hoof",
+        "horse",
+        "neigh",
+        "snorting",
+        "surface",
+        "trotting",
+        "whinny"
+      ],
+      "supported_terms": [],
+      "unsupported_terms": [
+        "aggression",
+        "dog",
+        "environment",
+        "growling",
+        "noise",
+        "panting",
+        "vocalization",
+        "warning"
+      ],
+      "unsupported_fraction": 1.0,
+      "reference_coverage": 0.0,
+      "id": "YJZloTOdIY_c"
+    },
+    {
+      "predicted_terms": [
+        "second",
+        "water",
+        "woman"
+      ],
+      "reference_terms": [
+        "microphone",
+        "speech",
+        "splash",
+        "trickle",
+        "trickling",
+        "water",
+        "wind",
+        "woman"
+      ],
+      "supported_terms": [
+        "water",
+        "woman"
+      ],
+      "unsupported_terms": [
+        "second"
+      ],
+      "unsupported_fraction": 0.3333333333333333,
+      "reference_coverage": 0.25,
+      "id": "YPTyFYxXdut4"
+    },
+    {
+      "predicted_terms": [
+        "engine",
+        "hum",
+        "pace"
+      ],
+      "reference_terms": [
+        "distance",
+        "engine",
+        "humming",
+        "noise",
+        "rain",
+        "static",
+        "thunder"
+      ],
+      "supported_terms": [
+        "engine"
+      ],
+      "unsupported_terms": [
+        "hum",
+        "pace"
+      ],
+      "unsupported_fraction": 0.6666666666666666,
+      "reference_coverage": 0.14285714285714285,
+      "id": "Y_iUX8CibElk"
+    },
+    {
+      "predicted_terms": [
+        "engine",
+        "hum",
+        "idling",
+        "increase",
+        "intensity",
+        "output",
+        "pitch",
+        "power",
+        "revving",
+        "rise",
+        "rpm",
+        "second",
+        "shift",
+        "tone",
+        "transition",
+        "vehicle",
+        "volume"
+      ],
+      "reference_terms": [
+        "adult",
+        "engine",
+        "frequency",
+        "male",
+        "man",
+        "motor",
+        "revs",
+        "speech",
+        "tire",
+        "vehicle",
+        "vibration",
+        "vroom"
+      ],
+      "supported_terms": [
+        "engine",
+        "vehicle"
+      ],
+      "unsupported_terms": [
+        "hum",
+        "idling",
+        "increase",
+        "intensity",
+        "output",
+        "pitch",
+        "power",
+        "revving",
+        "rise",
+        "rpm",
+        "second",
+        "shift",
+        "tone",
+        "transition",
+        "volume"
+      ],
+      "unsupported_fraction": 0.8823529411764706,
+      "reference_coverage": 0.16666666666666666,
+      "id": "Y2KR0C5ysO8o"
+    },
+    {
+      "predicted_terms": [
+        "duration",
+        "man",
+        "mechanism",
+        "music",
+        "progress",
+        "second",
+        "whistle"
+      ],
+      "reference_terms": [
+        "guitar",
+        "man",
+        "music",
+        "play",
+        "whistle"
+      ],
+      "supported_terms": [
+        "man",
+        "music",
+        "whistle"
+      ],
+      "unsupported_terms": [
+        "duration",
+        "mechanism",
+        "progress",
+        "second"
+      ],
+      "unsupported_fraction": 0.5714285714285714,
+      "reference_coverage": 0.6,
+      "id": "YhuMLK0oA3L8"
+    },
+    {
+      "predicted_terms": [
+        "machine",
+        "man",
+        "noise",
+        "sewing",
+        "speech"
+      ],
+      "reference_terms": [
+        "burst",
+        "garment",
+        "machine",
+        "man",
+        "sew",
+        "sewing",
+        "stitch",
+        "stop",
+        "vibration"
+      ],
+      "supported_terms": [
+        "machine",
+        "man",
+        "sewing"
+      ],
+      "unsupported_terms": [
+        "noise",
+        "speech"
+      ],
+      "unsupported_fraction": 0.4,
+      "reference_coverage": 0.3333333333333333,
+      "id": "Yii3Geza3hAU"
+    },
+    {
+      "predicted_terms": [
+        "ambulance",
+        "car",
+        "combination",
+        "emergency",
+        "fire",
+        "man",
+        "police",
+        "scene",
+        "second",
+        "sense",
+        "siren",
+        "situation",
+        "truck",
+        "urgency",
+        "vehicle",
+        "voice",
+        "volume",
+        "wailing"
+      ],
+      "reference_terms": [
+        "adult",
+        "car",
+        "distance",
+        "emergency",
+        "engine",
+        "horn",
+        "intercom",
+        "male",
+        "man",
+        "people",
+        "police",
+        "run",
+        "siren",
+        "speech",
+        "vehicle"
+      ],
+      "supported_terms": [
+        "car",
+        "emergency",
+        "man",
+        "police",
+        "siren",
+        "vehicle"
+      ],
+      "unsupported_terms": [
+        "ambulance",
+        "combination",
+        "fire",
+        "scene",
+        "second",
+        "sense",
+        "situation",
+        "truck",
+        "urgency",
+        "voice",
+        "volume",
+        "wailing"
+      ],
+      "unsupported_fraction": 0.6666666666666666,
+      "reference_coverage": 0.4,
+      "id": "Ym8wV38lf2jg"
+    },
+    {
+      "predicted_terms": [
+        "clacking",
+        "distance",
+        "end",
+        "engine",
+        "horn",
+        "motion",
+        "movement",
+        "noise",
+        "resonant",
+        "rumble",
+        "screech",
+        "second",
+        "sense",
+        "tone",
+        "track",
+        "train",
+        "transition",
+        "urgency",
+        "wheel"
+      ],
+      "reference_terms": [
+        "beep",
+        "bus",
+        "drive",
+        "engine",
+        "honking",
+        "horn",
+        "microphone",
+        "motor",
+        "rumble",
+        "vehicle",
+        "wind"
+      ],
+      "supported_terms": [
+        "engine",
+        "horn",
+        "rumble"
+      ],
+      "unsupported_terms": [
+        "clacking",
+        "distance",
+        "end",
+        "motion",
+        "movement",
+        "noise",
+        "resonant",
+        "screech",
+        "second",
+        "sense",
+        "tone",
+        "track",
+        "train",
+        "transition",
+        "urgency",
+        "wheel"
+      ],
+      "unsupported_fraction": 0.8421052631578947,
+      "reference_coverage": 0.2727272727272727,
+      "id": "YmYQrjcYNrW0"
+    }
+  ]
+}
