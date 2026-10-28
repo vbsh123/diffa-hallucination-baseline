@@ -22,7 +22,20 @@ bash run.sh
 
 If reusing an environment, set `AUDIO_VENV=/absolute/path/to/.venv` for **both** scripts. Setup installs the pinned versions into that environment. `SKIP_INSTALL=1 bash setup.sh` skips installation if those versions are already present. `DIFFA_ROOT=/path/to/DIFFA` accepts an existing clean checkout at the pinned commit; other revisions or modified checkouts are rejected. A separate default checkout is created under `external/DIFFA`.
 
-Options for `run.sh`: `SAMPLES`, `SEED`, `DATA_DIR`, `RUN_NAME` (output directory), `DEVICE`, `AUDIO_VENV`, `DIFFA_ROOT`. Use new data/run directories when changing the seed or protocol. Do not mix runs. On an unchanged run, existing predictions are reused; changed code, dependencies, model settings or input manifest require a new output directory.
+Options for `run.sh`: `SAMPLES`, `SEED`, `DATA_DIR`, `RUN_NAME` (output directory), `DEVICE`, `AUDIO_VENV`, `DIFFA_ROOT`, `INSTRUCTION` (optional caption prompt). Use new data/run directories when changing the seed or protocol. Do not mix runs. On an unchanged run, existing predictions are reused; changed code, dependencies, model settings or input manifest require a new output directory.
+
+### Describing events in order
+
+To test whether chronological descriptions help inspection, run the same cohort with a separate instruction and output directory:
+
+```bash
+INSTRUCTION='Describe the audio, reporting audible events in the order they occur. If sounds overlap or continue throughout, say so.' \
+RUN_NAME=runs/ordered50 bash run.sh
+```
+
+The default run continues to use `Describe the audio.`. The exact instruction is saved in each run's `config.json`. The ordered run uses the same clips and decoding settings; simultaneous sounds should not be forced into a false sequence. Check missing-EOS flags, since a more detailed answer can exhaust the 128-token answer capacity.
+
+This prompt does **not** add temporal evaluation. The current scorer compares sets of noun lemmas against the union of the reference captions and labels. A matched noun validates only lexical support: “a dog barks” and “a dog is silent” can both match “dog.” It ignores verbs, argument roles and event order; “a bell then a dog” and “a dog then a bell” can score identically. No sentence embeddings, semantic entailment model or audio judge is used. Human reference captions also lack a complete verified event timeline. Review chronological claims by listening; a future temporal metric needs verified event intervals or before/after/overlap annotations. Keep source/scene and audible-event judgments separate.
 
 ## Run on Vast.ai
 

@@ -6,10 +6,15 @@ export PYTHONUNBUFFERED=1 TOKENIZERS_PARALLELISM=false
 baseline_samples="${SAMPLES:-50}"
 baseline_data="${DATA_DIR:-$PWD/data/audiocaps$baseline_samples}"
 baseline_run="${RUN_NAME:-$PWD/runs/baseline$baseline_samples}"
+baseline_instruction_args=()
+if [[ -n "${INSTRUCTION+x}" ]]; then
+  baseline_instruction_args=(--instruction "$INSTRUCTION")
+fi
 python -m baseline.prepare --out "$baseline_data" --samples "$baseline_samples" --seed "${SEED:-20261027}"
 python -m baseline.run \
   --manifest "$baseline_data/manifest.json" \
   --out "$baseline_run" \
   --diffa-root "${DIFFA_ROOT:-$PWD/external/DIFFA}" \
   --device "${DEVICE:-cuda:0}" \
-  --seed "${SEED:-20261027}"
+  --seed "${SEED:-20261027}" \
+  "${baseline_instruction_args[@]}"
