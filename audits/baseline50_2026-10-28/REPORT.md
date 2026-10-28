@@ -96,4 +96,3 @@ python3 audits/baseline50_2026-10-28/summarize.py --manifest data/audiocaps50/ma
 ```
 
 The script validates all 50 IDs and the source-manifest hash, then counts the explicit judgments; it does not generate new semantic judgments or assess audio. The optional lexical replay re-extracts nouns from the quoted captions using the existing pinned scorer. Reference captions remain in the cohort manifest and are not redistributed here; evidence notes paraphrase them.
-

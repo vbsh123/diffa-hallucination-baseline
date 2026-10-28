@@ -133,7 +133,7 @@ def summarize(manifest_path=None, replay=False):
               "source_mismatch_candidate", "reference_evidence", "annotation_conflict",
               "qualitative_omissions", "excluded_explanations", "other_issues"]
     with (HERE / "review.csv").open("w", newline="") as stream:
-        writer = csv.DictWriter(stream, fieldnames=fields)
+        writer = csv.DictWriter(stream, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         for row in rows:
             output = {key: row.get(key, "") for key in fields}
@@ -183,7 +183,7 @@ def summarize(manifest_path=None, replay=False):
         "```bash\npython3 audits/baseline50_2026-10-28/summarize.py --manifest data/audiocaps50/manifest.json\n# Optional: replay all original noun metrics without DIFFA inference:\n.venv/bin/python audits/baseline50_2026-10-28/summarize.py --manifest data/audiocaps50/manifest.json --replay-lexical\n```\n",
         "The script validates all 50 IDs and the source-manifest hash, then counts the explicit judgments; it does not generate new semantic judgments or assess audio. The optional lexical replay re-extracts nouns from the quoted captions using the existing pinned scorer. Reference captions remain in the cohort manifest and are not redistributed here; evidence notes paraphrase them.\n",
     ])
-    (HERE / "REPORT.md").write_text("\n".join(report) + "\n")
+    (HERE / "REPORT.md").write_text("\n".join(report).rstrip() + "\n")
     print(json.dumps({key: summary[key] for key in ("clips", "counts", "source_mismatch_candidate_count",
                                                    "source_mismatch_candidate_fraction", "annotation_conflict_clips")}, indent=2))
     print(f"Saved report and per-clip CSV under {HERE}")
