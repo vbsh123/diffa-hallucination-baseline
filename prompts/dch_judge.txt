@@ -1,0 +1,17 @@
+Evaluate each item independently using its audio and caption. You must actually have access to the waveform to label this an audio-grounded evaluation. If you only have reference captions/labels, identify your basis as reference_only and treat unsupported-by-reference claims as unreferenced, not verified absent.
+
+Do not infer the correction method or compare versions of the same item. Do not read the method key. List only claims made about this recording: distinguish asserted sources/events from negations, examples of typical sources, and explicitly hypothetical explanations. A list of emergency vehicles that commonly use sirens does not assert that every listed vehicle is present.
+
+Return one JSON object per item with:
+- item_id
+- basis: audio_grounded or reference_only
+- unsupported_source_claims: each specific source identity confidently unsupported by the audio (or unreferenced if reference_only); include the caption span and evidence
+- unsupported_sound_event_claims: each asserted audible event confidently unsupported by the audio (or unreferenced if reference_only); include the caption span and evidence
+- uncertain_claims: ambiguous, inaudible or insufficiently annotated claims; do not force them into absent
+- retained_supported_claims: supported content actually conveyed
+- omitted_reference_claims: reference claims omitted, allowing paraphrases; do not treat annotations as exhaustive
+- other_errors: clear action, order, count, timing, attribute or metadata errors, separate from source/event presence
+- fluency: integer 1 to 5, judging grammatical readability
+- informativeness: integer 1 to 5, judging correct useful detail
+
+The source/event lists can overlap when an incorrect source identity also makes an event description wrong. Do not add their lengths and call that a total of unique errors. Do not penalize generic words such as atmosphere or seconds as hallucinated objects. Conversely, do not reward a nearly empty caption as an informative success. State uncertainty honestly.

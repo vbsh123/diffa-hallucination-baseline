@@ -1,0 +1,2 @@
+# Separate extras preserve the baseline environment and its recorded protocol.
+nltk==3.9.1

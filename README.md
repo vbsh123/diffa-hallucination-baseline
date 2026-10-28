@@ -1,6 +1,8 @@
 # DIFFA hallucination baseline
 
-Measure untouched **DIFFA-2 audio captioning** on a fixed AudioCaps/ECHO sample before implementing Detect–Cut–Heal. The first experiment asks: **which source or event nouns in the generated description lack support in the available captions and sound labels?** Listen to the flagged examples before calling them hallucinations.
+Measure untouched **DIFFA-2 audio captioning** on a fixed AudioCaps/ECHO sample, then test Detect–Cut–Heal on the saved captions. The first experiment asks: **which source or event nouns in the generated description lack support in the available captions and sound labels?** Listen to the flagged examples before calling them hallucinations.
+
+The core **Detect–Cut–Heal audio adaptation is now implemented** in the separate `dch/` package, using unmodified method files from the supplied `DCH-main.zip` with a DIFFA model adapter. It reads saved captions, uses two-mask Yes/No log-odds, applies the supplied deletion grammar and performs native local infilling. See [DCH.md](DCH.md) for Vast run commands, tests and explicit audio-model adaptations. It does not regenerate or overwrite baseline captions.
 
 ## Run
 
@@ -167,4 +169,4 @@ Validation on 2026-10-27: all eight CPU tests passed; the real two-clip and 50-c
 
 The loader adapts the official code's hard-coded local checkpoint paths, restores the checkpoint's connector settings, loads the public Whisper encoder and pinned LLaDA base, and merges DIFFA's LoRA weights when present (alpha 16, as in the upstream training configuration). Required connector/LoRA mismatches abort loading. Upstream code is fetched, not vendored; its licenses and the models'/dataset's terms apply separately.
 
-After the audit confirms real failures, the next experiment can compare the same clips and prompt before/after Detect–Cut–Heal, reporting both unsupported claims and lost correct content. No intervention is implemented in this baseline.
+The original baseline remains available unchanged. The separate [DCH adaptation](DCH.md) now compares saved originals, Cut-only and locally healed captions. Report both unsupported claims and lost correct content; a detector rejection or lower lexical proxy is not itself proof of acoustic improvement.

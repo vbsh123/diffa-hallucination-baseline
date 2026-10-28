@@ -1,0 +1,13 @@
+{
+  "archive": "DCH-main.zip",
+  "archive_sha256": "c279fc749da19b284ab517a814a1aac7d8f4277709542633db37294faf06fe2d",
+  "files": {
+    "candidates.py": "1239c3b5d79ac19d0881e2bde5b87ef97814351a0821b690e157b286a1f48fb4",
+    "cut.py": "ae5b5c991f75483e939f00845693c76ac4ac263b30b387b0d861d1f31f787458",
+    "detect.py": "11acd698a0787df5c8561b280520d1018e545c1ed55c6770785e71b74e780c92",
+    "heal.py": "aadf922ba4a16d4df1c2c49d8abc448bc8c42b895e6e532508106844227383cd",
+    "model.py": "dfc8d81cf9af5ba4461f578d4c031699f2232b7f678547b2b270fb72ee90582b",
+    "pipeline.py": "285ef9b77e6e94568a7984246bafd3f5e823b1f9675e9c6edbb431ccac45c60f"
+  },
+  "archive_comment": "db099487f853ba2947fad6ffd032ba55690b9774"
+}
