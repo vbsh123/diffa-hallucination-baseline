@@ -6,6 +6,8 @@ The surrounding adapter replaces LLaDA-V's image-conditioned model interface wit
 
 ## Run on your existing Vast instance
 
+For the separate five-clip paired BRACE-Hallucination test, see [BRACE.md](BRACE.md); run `bash run_brace.sh` after DCH setup. The commands below continue to use saved natural DIFFA outputs.
+
 Run directly in your terminal, using the existing baseline environment and `runs/baseline50/`:
 
 ```bash

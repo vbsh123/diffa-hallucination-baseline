@@ -6,7 +6,12 @@ import re
 from baseline.common import digest,load_manifest,read_json
 
 
-def load_inputs(baseline_run=None,manifest_path=None,caption_log=None,samples=None):
+def load_inputs(baseline_run=None,manifest_path=None,caption_log=None,samples=None,brace_cohort=None):
+    if brace_cohort is not None:
+        if any(p is not None for p in (baseline_run,manifest_path,caption_log)):
+            raise ValueError("--brace-cohort cannot be mixed with saved baseline/log inputs")
+        from .brace import load_inputs as load_brace
+        return load_brace(brace_cohort,samples)
     provenance = {}
     if caption_log is not None:
         if baseline_run is not None or manifest_path is None:

@@ -9,6 +9,9 @@ from baseline.common import read_json,write_json
 
 
 def report(out,samples,manifest_path,config_hash,detect_only=False):
+    if samples and "brace" in samples[0]:
+        from .brace import report as brace_report
+        return brace_report(out,samples,manifest_path,config_hash,detect_only)
     import spacy
     from baseline.score import NLP_MODEL,NLP_VERSION,aggregate,compare,extract
     out = Path(out)

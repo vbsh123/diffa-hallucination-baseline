@@ -6,6 +6,8 @@ The core **Detect–Cut–Heal audio adaptation is now implemented** in the sepa
 
 ## Run
 
+For the small controlled **BRACE-Hallucination** experiment (five clips, original/corrupted caption pairs), use `bash run_brace.sh` after `bash setup_dch.sh`. See [BRACE.md](BRACE.md) for commands, targeted removal/preservation metrics and limitations. This experiment does not require saved baseline generations.
+
 Use Linux, Python 3.10–3.12 and one CUDA GPU with bfloat16 support. A 48-GB GPU is a reasonable starting point; peak VRAM has not yet been measured. Expect multi-GB model downloads and a roughly 0.6-GB dataset download. Setup installs CUDA 12.4 wheels; the host needs a compatible NVIDIA driver. No training is performed.
 
 ```bash

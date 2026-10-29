@@ -36,7 +36,7 @@ def run(args):
     if not torch.cuda.is_bf16_supported():
         raise ValueError("Use a GPU supporting bfloat16")
     manifest_path,samples,predictions,source,origin = load_inputs(
-        args.baseline_run,args.manifest,args.caption_log,args.samples)
+        args.baseline_run,args.manifest,args.caption_log,args.samples,args.brace_cohort)
     models = dict(diffa=[DIFFA_REPO,DIFFA_REVISION],llm=[LLM_REPO,LLM_REVISION],
                   whisper=[WHISPER_REPO,WHISPER_REVISION])
     if source.get("models",models) != models:
@@ -122,6 +122,7 @@ def run(args):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--baseline-run",type=Path)
+    parser.add_argument("--brace-cohort",type=Path,help="Prepared paired BRACE manifest; --samples counts audio clips")
     parser.add_argument("--caption-log",type=Path,help="Fallback for pasted logs; original config unavailable")
     parser.add_argument("--manifest",type=Path,help="Optional relocated manifest; original hash must match")
     parser.add_argument("--out",type=Path,default=Path("runs/dch50"))
